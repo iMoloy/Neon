@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moloy Paul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Neon glow effects */
+      .neon-text {
+        text-shadow: 0 0 10px #00fff9, 0 0 20px #00fff9, 0 0 30px #00fff9;
+      }
+
+      .neon-border {
+        box-shadow: 0 0 5px #00fff9, 0 0 10px #00fff9, 0 0 20px #00fff9, 0 0 40px #00fff9;
+      }
+
+      .neon-glow {
+        box-shadow: 0 0 10px rgba(0, 255, 249, 0.5), 0 0 20px rgba(0, 255, 249, 0.3), 0 0 30px rgba(0, 255, 249, 0.2);
+      }
+
+      .neon-hover {
+        transition: all 0.3s ease;
+      }
+
+      .neon-hover:hover {
+        box-shadow: 0 0 15px #00fff9, 0 0 30px #00fff9, 0 0 45px #00fff9;
+        transform: translateY(-5px);
+      }
+
+      /* Animated background */
+      .animated-bg {
+        background: linear-gradient(125deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+        background-size: 200% 200%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Floating animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      .float-animation {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Pulse animation for availability badge */
+      @keyframes neon-pulse {
+        0%, 100% { 
+          box-shadow: 0 0 5px #00fff9, 0 0 10px #00fff9;
+          opacity: 1;
+        }
+        50% { 
+          box-shadow: 0 0 10px #00fff9, 0 0 20px #00fff9, 0 0 30px #00fff9;
+          opacity: 0.8;
+        }
+      }
+
+      .neon-pulse {
+        animation: neon-pulse 2s ease-in-out infinite;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #0a0e27;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #00fff9;
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00cccc;
+      }
+
+      /* Grid background effect */
+      .grid-bg {
+        background-image: 
+          linear-gradient(rgba(0, 255, 249, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 249, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+    </style>
+  </head>
+  <body class="bg-[#0a0e27] text-gray-300 antialiased selection:bg-[#00fff9] selection:text-black">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-[#0a0e27]/95 backdrop-blur-md border-b border-[#00fff9]/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex-shrink-0">
+            <a href="https://moloy.is-a.dev" class="text-2xl font-bold text-[#00fff9] neon-text">
+              Moloy<span class="text-white"> Paul</span>.
+            </a>
+          </div>
+          
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a href="#home" class="hover:text-[#00fff9] transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
+              <a href="#about" class="hover:text-[#00fff9] transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+              <a href="#skills" class="hover:text-[#00fff9] transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+              <a href="#projects" class="hover:text-[#00fff9] transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+              <a href="#contact" class="px-4 py-2 rounded-md text-sm font-medium bg-[#00fff9] text-black hover:bg-[#00cccc] transition-all neon-glow font-semibold">
+                Contact Me
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button id="mobile-menu-btn" class="text-gray-300 hover:text-[#00fff9] focus:outline-none">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-[#1a1f3a] border-t border-[#00fff9]/20">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="#home" class="block hover:text-[#00fff9] hover:bg-[#0a0e27] transition-colors px-3 py-2 rounded-md text-base font-medium">Home</a>
+          <a href="#about" class="block hover:text-[#00fff9] hover:bg-[#0a0e27] transition-colors px-3 py-2 rounded-md text-base font-medium">About</a>
+          <a href="#skills" class="block hover:text-[#00fff9] hover:bg-[#0a0e27] transition-colors px-3 py-2 rounded-md text-base font-medium">Skills</a>
+          <a href="#projects" class="block hover:text-[#00fff9] hover:bg-[#0a0e27] transition-colors px-3 py-2 rounded-md text-base font-medium">Projects</a>
+          <a href="#contact" class="block text-center mx-3 my-2 px-4 py-2 rounded-md text-base font-medium bg-[#00fff9] text-black hover:bg-[#00cccc] transition-all neon-glow font-semibold">
+            Contact Me
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 animated-bg grid-bg overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center relative">
+        <div class="lg:w-1/2 mt-10 lg:mt-0 z-10">
+          <p class="text-[#00fff9] font-semibold mb-4 tracking-widest text-sm">
+            HELLO, I AM
+          </p>
+          <h1 class="text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+            Front-End <br />
+            <span class="text-[#00fff9] neon-text">Developer</span>
+          </h1>
+          <p class="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+            I build accessible, pixel-perfect, and performant web experiences.
+            Passionate about turning creative designs into interactive reality with cutting-edge technologies.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#projects" class="px-8 py-4 bg-[#00fff9] text-black font-bold rounded-lg hover:bg-[#00cccc] transition-all neon-glow">
+              View Work
+            </a>
+            <a href="#contact" class="px-8 py-4 border-2 border-[#00fff9] text-[#00fff9] font-bold rounded-lg hover:bg-[#00fff9] hover:text-black transition-all">
+              Contact Me
+            </a>
+          </div>
+
+          <div class="mt-10 flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-[#00fff9] transition-all text-2xl hover:scale-110 transform">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-[#00fff9] transition-all text-2xl hover:scale-110 transform">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-[#00fff9] transition-all text-2xl hover:scale-110 transform">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-[#00fff9] transition-all text-2xl hover:scale-110 transform">
+              <i class="fab fa-codepen"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:w-1/2 flex justify-center">
+          <div class="relative float-animation">
+            <div class="w-72 h-72 lg:w-96 lg:h-96 rounded-full border-4 border-[#00fff9]/30 flex items-center justify-center bg-[#1a1f3a] neon-border">
+              <i class="fas fa-code text-9xl text-[#00fff9]/60"></i>
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-[#1a1f3a] p-4 rounded-xl border-2 border-[#00fff9] neon-pulse">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-[#00fff9] rounded-full"></div>
+                <span class="text-sm font-semibold text-white">Available for work</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-[#0f1420]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16 text-center">
+          <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
+          <div class="w-20 h-1 bg-[#00fff9] rounded-full mx-auto neon-glow"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-3xl font-bold text-[#00fff9] mb-6 neon-text">
+              Designing with code
+            </h3>
+            <p class="text-gray-400 mb-6 leading-relaxed text-lg">
+              I specialize in building responsive, user-friendly websites using
+              modern web technologies. I have a keen eye for design and pay
+              close attention to details, ensuring that every project looks
+              great on all devices.
+            </p>
+            <p class="text-gray-400 mb-6 leading-relaxed text-lg">
+              My journey started with simple HTML pages, and now I create
+              complex single-page applications. I'm always learning new tools to
+              improve my workflow and deliver better results.
+            </p>
+
+            <div class="grid grid-cols-2 gap-6 mt-8">
+              <div class="bg-[#1a1f3a] p-6 rounded-lg border border-[#00fff9]/20 hover:border-[#00fff9] transition-all">
+                <span class="block text-4xl font-bold text-[#00fff9] neon-text mb-2">2+</span>
+                <span class="text-sm text-gray-400">Years Experience</span>
+              </div>
+              <div class="bg-[#1a1f3a] p-6 rounded-lg border border-[#00fff9]/20 hover:border-[#00fff9] transition-all">
+                <span class="block text-4xl font-bold text-[#00fff9] neon-text mb-2">20+</span>
+                <span class="text-sm text-gray-400">Projects Completed</span>
+              </div>
+              <div class="bg-[#1a1f3a] p-6 rounded-lg border border-[#00fff9]/20 hover:border-[#00fff9] transition-all">
+                <span class="block text-4xl font-bold text-[#00fff9] neon-text mb-2">15+</span>
+                <span class="text-sm text-gray-400">Happy Clients</span>
+              </div>
+              <div class="bg-[#1a1f3a] p-6 rounded-lg border border-[#00fff9]/20 hover:border-[#00fff9] transition-all">
+                <span class="block text-4xl font-bold text-[#00fff9] neon-text mb-2">100%</span>
+                <span class="text-sm text-gray-400">Client Satisfaction</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-[#1a1f3a] p-8 rounded-2xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all">
+            <h3 class="text-2xl font-bold text-white mb-6">What I Do</h3>
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-[#00fff9]/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#00fff9]/30">
+                  <i class="fas fa-mobile-alt text-[#00fff9] text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">Responsive Design</h4>
+                  <p class="text-gray-400 text-sm">Creating seamless experiences across all devices and screen sizes.</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-[#00fff9]/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#00fff9]/30">
+                  <i class="fas fa-paint-brush text-[#00fff9] text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">UI/UX Design</h4>
+                  <p class="text-gray-400 text-sm">Crafting beautiful and intuitive user interfaces with attention to detail.</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-[#00fff9]/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-[#00fff9]/30">
+                  <i class="fas fa-rocket text-[#00fff9] text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">Performance</h4>
+                  <p class="text-gray-400 text-sm">Optimizing websites for speed and exceptional user experience.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 animated-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16 text-center">
+          <h2 class="text-4xl font-bold text-white mb-4">Tech Stack</h2>
+          <div class="w-20 h-1 bg-[#00fff9] rounded-full mx-auto neon-glow"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-html5 text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">HTML5</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-css3-alt text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">CSS3</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-js text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">JavaScript</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-react text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">React.js</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-node text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">Tailwind CSS</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-git-alt text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">Git</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fab fa-github text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">GitHub</h3>
+          </div>
+          <div class="bg-[#1a1f3a] p-6 rounded-xl border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all text-center neon-hover">
+            <i class="fas fa-code text-5xl text-[#00fff9] mb-4"></i>
+            <h3 class="text-white font-semibold">VS Code</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-[#0f1420]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16 text-center">
+          <h2 class="text-4xl font-bold text-white mb-4">My Projects</h2>
+          <div class="w-20 h-1 bg-[#00fff9] rounded-full mx-auto neon-glow"></div>
+          <p class="mt-6 text-gray-400 text-lg">
+            Check out some of the work I've built recently.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="group bg-[#1a1f3a] rounded-2xl overflow-hidden border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all neon-hover">
+            <div class="h-48 bg-gradient-to-br from-[#00fff9]/20 to-[#0a0e27] relative overflow-hidden">
+              <div class="absolute inset-0 bg-[#00fff9]/10 group-hover:bg-[#00fff9]/20 transition-all"></div>
+              <div class="flex items-center justify-center h-full text-[#00fff9]">
+                <i class="fas fa-chart-line text-6xl"></i>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#00fff9] transition-colors">
+                E-Commerce Dashboard
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                A responsive dashboard layout featuring data visualization and
+                dark mode support with real-time analytics.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">React</span>
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">Tailwind</span>
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">Charts</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-[#00fff9] hover:text-white text-sm font-semibold transition-colors flex items-center">
+                  View Demo <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#00fff9] text-xl transition-colors">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="group bg-[#1a1f3a] rounded-2xl overflow-hidden border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all neon-hover">
+            <div class="h-48 bg-gradient-to-br from-[#00fff9]/20 to-[#0a0e27] relative overflow-hidden">
+              <div class="absolute inset-0 bg-[#00fff9]/10 group-hover:bg-[#00fff9]/20 transition-all"></div>
+              <div class="flex items-center justify-center h-full text-[#00fff9]">
+                <i class="fas fa-cloud-sun text-6xl"></i>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#00fff9] transition-colors">
+                Weather App
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                Real-time weather application using OpenWeather API with dynamic
+                background changes and forecasts.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">JavaScript</span>
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">API</span>
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">CSS</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-[#00fff9] hover:text-white text-sm font-semibold transition-colors flex items-center">
+                  View Demo <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#00fff9] text-xl transition-colors">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="group bg-[#1a1f3a] rounded-2xl overflow-hidden border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all neon-hover">
+            <div class="h-48 bg-gradient-to-br from-[#00fff9]/20 to-[#0a0e27] relative overflow-hidden">
+              <div class="absolute inset-0 bg-[#00fff9]/10 group-hover:bg-[#00fff9]/20 transition-all"></div>
+              <div class="flex items-center justify-center h-full text-[#00fff9]">
+                <i class="fas fa-briefcase text-6xl"></i>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#00fff9] transition-colors">
+                Portfolio Template
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                A minimal personal portfolio website template designed for
+                creative professionals with smooth animations.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">HTML/CSS</span>
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">Design</span>
+                <span class="text-xs px-3 py-1 bg-[#00fff9]/10 text-[#00fff9] rounded-full border border-[#00fff9]/30">Responsive</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-[#00fff9] hover:text-white text-sm font-semibold transition-colors flex items-center">
+                  View Demo <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#00fff9] text-xl transition-colors">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 animated-bg grid-bg">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
+          <div class="w-20 h-1 bg-[#00fff9] rounded-full mx-auto neon-glow mb-6"></div>
+          <p class="text-gray-400 text-lg">Feel free to reach out for collaborations or just a friendly hello!</p>
+        </div>
+        
+        <div class="bg-[#1a1f3a] rounded-2xl p-8 md:p-10 border-2 border-[#00fff9]/20 hover:border-[#00fff9] transition-all">
+          <div class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold text-[#00fff9] mb-2">Your Name</label>
+                <input 
+                  type="text" 
+                  id="name"
+                  class="w-full px-4 py-3 rounded-lg bg-[#0a0e27] border-2 border-[#00fff9]/30 text-white focus:border-[#00fff9] focus:ring-2 focus:ring-[#00fff9]/50 outline-none transition-all" 
+                  placeholder="John Doe"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-[#00fff9] mb-2">Your Email</label>
+                <input 
+                  type="email" 
+                  id="email"
+                  class="w-full px-4 py-3 rounded-lg bg-[#0a0e27] border-2 border-[#00fff9]/30 text-white focus:border-[#00fff9] focus:ring-2 focus:ring-[#00fff9]/50 outline-none transition-all" 
+                  placeholder="john@example.com"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-[#00fff9] mb-2">Subject</label>
+              <input 
+                type="text" 
+                id="subject"
+                class="w-full px-4 py-3 rounded-lg bg-[#0a0e27] border-2 border-[#00fff9]/30 text-white focus:border-[#00fff9] focus:ring-2 focus:ring-[#00fff9]/50 outline-none transition-all" 
+                placeholder="Project Inquiry"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-[#00fff9] mb-2">Message</label>
+              <textarea 
+                rows="5" 
+                id="message"
+                class="w-full px-4 py-3 rounded-lg bg-[#0a0e27] border-2 border-[#00fff9]/30 text-white focus:border-[#00fff9] focus:ring-2 focus:ring-[#00fff9]/50 outline-none transition-all resize-none" 
+                placeholder="Write your message here..."
+              ></textarea>
+            </div>
+            <button 
+              type="button" 
+              id="send-btn"
+              class="w-full bg-[#00fff9] text-black font-bold py-4 px-6 rounded-lg hover:bg-[#00cccc] transition-all neon-glow text-lg"
+            >
+              Send Message <i class="fas fa-paper-plane ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0e27] border-t border-[#00fff9]/20 py-8 text-center">
+      <p class="text-gray-500 text-sm">&copy; 2025 Front-End Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Toggle icon between bars and times
+        const icon = mobileMenuBtn.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        } else {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        }
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          const icon = mobileMenuBtn.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        });
+      });
+
+      // Contact Form Send Button
+      const sendBtn = document.getElementById('send-btn');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const subjectInput = document.getElementById('subject');
+      const messageInput = document.getElementById('message');
+
+      sendBtn.addEventListener('click', () => {
+        // Get form values
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value.trim();
+        const message = messageInput.value.trim();
+
+        // Simple validation
+        if (!name || !email || !subject || !message) {
+          alert('Please fill in all fields!');
+          return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address!');
+          return;
+        }
+
+        // If validation passes, show success message
+        alert('Thank you for your message! I will get back to you soon.');
+        
+        // Clear form
+        nameInput.value = '';
+        emailInput.value = '';
+        subjectInput.value = '';
+        messageInput.value = '';
+      });
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
